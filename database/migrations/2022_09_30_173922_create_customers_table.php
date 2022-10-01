@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('photo')->nullable();
             $table->string('fcm')->nullable();
             $table->datetime('phone_verified_at')->nullable();
+            $table->datetime('email_verified_at')->nullable();
             $table->foreignUuid('card_uuid')->nullable();
             $table->foreignId('user_id')->nullable();
             $table->timestamps();
