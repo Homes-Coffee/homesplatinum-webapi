@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
 
         // env != production
         if (env('APP_ENV') == 'local'){
-            $this->call(CustomerSeeder::class);
+            // $this->call(CustomerSeeder::class);
         }
     }
 }

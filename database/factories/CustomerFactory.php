@@ -27,7 +27,6 @@ class CustomerFactory extends Factory
             'email'     => $this->faker->unique()->safeEmail,
             'whatsapp'  => $this->faker->unique()->numerify('08##########'),
             'password'      => Hash::make('password'),
-            'profession'    => 'programmer',
             'photo'         => null,
         ];
     }

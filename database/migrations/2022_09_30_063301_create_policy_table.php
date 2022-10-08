@@ -13,14 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('cards', function (Blueprint $table) {
+        Schema::create('policy', function (Blueprint $table) {
             $table->id();
             $table->uuid('uuid')->unique();
+            $table->string('type');
             $table->string('title');
-            $table->string('description');
-            $table->string('type')->nullable();
-            $table->string('image')->nullable();
-            $table->string('is_subscription')->default(false);
+            $table->longText('content');
             $table->timestamps();
         });
     }
@@ -32,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cards');
+        Schema::dropIfExists('policy');
     }
 };

@@ -21,6 +21,7 @@ class CardSeeder extends Seeder
             'title' => 'Student',
             'description' => '',
             'image' => null,
+            'type' => null
         ]);
 
         Card::create([
@@ -28,12 +29,14 @@ class CardSeeder extends Seeder
             'title' => 'Loyalty',
             'description' => '',
             'image' => null,
+            'type' => null
         ]);
 
         Card::create([
             'uuid' => Str::uuid(),
             'title' => 'Priority',
             'description' => '',
+            'type' => 'subscription',
             'image' => null,
         ]);
     }

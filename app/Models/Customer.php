@@ -20,8 +20,10 @@ class Customer extends Model
         'email',
         'whatsapp',
         'password',
-        'profession',
-        'photo',
+    ];
+
+    protected $casts = [
+        'is_active' => 'boolean'
     ];
 
     protected $append = ['image_link'];

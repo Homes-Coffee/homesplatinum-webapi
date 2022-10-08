@@ -22,25 +22,14 @@ class CustomerSeeder extends Seeder
         $counter = 100;
         Customer::factory($counter)->create()->each( function ($customer, $counter) {
 
-            if ($counter % 3) {
-                CustomerIdentityNumber::create([
-                    'identity_number' => '12345',
-                    'identity_number_file' => '/file_path',
-                    'customer_uuid' => $customer->uuid,
-                ]);
-            }
-
             CustomerAgreement::create([
                 'type_of_aggrement' => 'terms_of_conditions',
                 'is_agree' => true,
                 'agreed' => now(),
                 'customer_uuid' => $customer->uuid,
+                'policy_uuid' => null
             ]);
 
-            CustomerWallet::create([
-                'pin' => Hash::make('12345'),
-                'customer_uuid' => $customer->uuid,
-            ]);
         });
     }
 }

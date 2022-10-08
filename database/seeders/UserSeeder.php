@@ -22,7 +22,7 @@ class UserSeeder extends Seeder
             'email' => 'homesplatinum.bdj@gmail.com',
             'password' => Hash::make('rahasia123'),
             'email_verified_at' => now(),
-            'remember_token' => Str::random(10),
+            'remember_token'    => Str::random(10),
         ]);
     }
 }

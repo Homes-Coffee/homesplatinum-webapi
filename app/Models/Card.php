@@ -28,4 +28,9 @@ class Card extends Model
 
         return '';
     }
+
+    public function IsShown()
+    {
+        return self::where('is_show', 1);
+    }
 }
