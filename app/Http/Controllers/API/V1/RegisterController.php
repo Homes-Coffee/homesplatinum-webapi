@@ -7,6 +7,7 @@ use App\Models\OTP;
 use App\Models\Card;
 use App\Models\Customer;
 use Illuminate\Http\Request;
+use App\Libraries\StarSender;
 use App\Models\CustomerLoyalty;
 use App\Models\CustomerStudent;
 use App\Http\Controllers\Controller;
@@ -74,12 +75,7 @@ class RegisterController extends Controller
                 'user_id'       => $customer->uuid,
             ]);
 
-            // WaBlast::sendWA([
-            //     'phone'     => $data->nohp,
-            //     'message'   => 'Berikut Kode OTP anda ' . $code . ' Harap rahasiakan kode OTP anda!',
-            //     'secret'    => false, // or true
-            //     'priority'  => false
-            // ]);
+            $wa = StarSender::sendWA($customer->whatsapp, 'Berikut Kode OTP anda ' . $code . ' Harap rahasiakan kode OTP anda!');
 
             return (new JsonResponser())->success('Registrasi berhasil, masukan OTP', new CustomerResource($customer->fresh()), 200);
         } catch (\Throwable $th) {

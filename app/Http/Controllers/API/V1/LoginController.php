@@ -30,12 +30,7 @@ class LoginController extends Controller
                 'user_id'       => $customer->uuid,
             ]);
 
-            // WaBlast::sendWA([
-            //     'phone'     => $data->nohp,
-            //     'message'   => 'Berikut Kode OTP anda ' . $code . ' Harap rahasiakan kode OTP anda!',
-            //     'secret'    => false, // or true
-            //     'priority'  => false
-            // ]);
+            $wa = StarSender::sendWA($customer->whatsapp, 'Berikut Kode OTP anda ' . $code . ' Harap rahasiakan kode OTP anda!');
 
             return (new JsonResponser())->success('Whatsapp ditemukan, masukan OTP', ['customer' => new CustomerResource($customer)]);
         } catch (\Throwable $th) {
