@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('customer_wallets', function (Blueprint $table) {
             $table->id();
             $table->uuid('uuid')->unique();
-            $table->string('pin');
+            $table->string('pin')->nullable();
             $table->string('customer_code')->unique();
             $table->bigInteger('point')->default(0);
             $table->bigInteger('balance')->default(0);

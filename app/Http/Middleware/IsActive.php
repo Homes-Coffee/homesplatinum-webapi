@@ -4,8 +4,9 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use App\Http\Responses\JsonResponser;
 
-class NotVerifiedCustomer
+class IsActive
 {
     /**
      * Handle an incoming request.
@@ -16,7 +17,11 @@ class NotVerifiedCustomer
      */
     public function handle(Request $request, Closure $next)
     {
-        $customer = Customer::where('whatsapp', $request->whatsapp)->firstOrFail();
+        $isActive = auth()->user()->is_active;
+
+        if (! $isActive ) {
+            return (new JsonResponser())->failure('User Belum Diverifikasi', (object) ['message' => 'user not verified'], 404);
+        }
 
         return $next($request);
     }

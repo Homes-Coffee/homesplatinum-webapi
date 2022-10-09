@@ -25,7 +25,7 @@ class JsonResponser extends \Illuminate\Http\JsonResponse
         $this->response['message']  = $message;
         $this->response['data']     = $data;
 
-        $this->setData($this->response)->setStatusCode($status);
+        $this->setData($this->response)->setStatusCode((int) $status);
         return $this;
     }
 
@@ -34,7 +34,7 @@ class JsonResponser extends \Illuminate\Http\JsonResponse
         $this->response['message']  = $message;
         $this->response['errors']   = $errors;
 
-        $this->setData($this->response)->setStatusCode($status);
+        $this->setData($this->response)->setStatusCode((int) $status);
         return $this;
     }
 
@@ -47,9 +47,9 @@ class JsonResponser extends \Illuminate\Http\JsonResponse
         }
 
         $this->response['message']  = 'server error';
-        $this->response['errors']    = $throwable->getMessage();
+        $this->response['errors']    = ['message' => $throwable->getMessage()];
 
-        $this->setData($this->response)->setStatusCode($code);
+        $this->setData($this->response)->setStatusCode((int) 500);
         return $this;
     }
 

@@ -13,14 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('cards', function (Blueprint $table) {
+        Schema::create('hidden_menu', function (Blueprint $table) {
             $table->id();
             $table->uuid('uuid')->unique();
-            $table->string('title');
-            $table->string('description');
-            $table->string('type')->nullable();
-            $table->string('image')->nullable();
+            $table->string('image');
+            $table->datetime('published_at');
+            $table->foreignUuid('card_uuid')->nullable();
+            $table->foreignId('user_id')->nullable();
             $table->timestamps();
+
+            // $table->foreign('card_uuid')->references('uuid')->on('card')->nullOnDelete();
+            // $table->foreign('user_id')->references('id')->on('users')->nullOnDelete();
         });
     }
 
@@ -31,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cards');
+        Schema::dropIfExists('hidden_menu');
     }
 };

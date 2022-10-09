@@ -13,13 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('cards', function (Blueprint $table) {
+        Schema::create('otp', function (Blueprint $table) {
             $table->id();
-            $table->uuid('uuid')->unique();
-            $table->string('title');
-            $table->string('description');
-            $table->string('type')->nullable();
-            $table->string('image')->nullable();
+            $table->string('send_with', 1)->comment('1 => WA, 2 => SMS, 3 => EMAIL, 0 => ALL');
+            $table->string('code', 6);
+            $table->integer('time_exp')->default(0);
+            $table->boolean('has_been_used')->default(false);
+            $table->foreignUuid('user_id')->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cards');
+        Schema::dropIfExists('otp');
     }
 };

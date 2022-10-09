@@ -5,21 +5,27 @@ namespace App\Models;
 use Illuminate\Support\Str;
 use App\Models\CustomerReward;
 use App\Models\CustomerWallet;
+use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Customer extends Model
 {
-    use HasFactory;
+    use HasFactory, HasApiTokens;
 
     protected $table = 'customers';
+
+    protected $primaryKey = 'uuid';
+    protected $keyType  = 'string';
+
+    public $incrementing = false;
 
     protected $fillable = [
         'uuid',
         'name',
         'email',
         'whatsapp',
-        'password',
+        'card_uuid'
     ];
 
     protected $casts = [
@@ -43,7 +49,6 @@ class Customer extends Model
 
         self::creating(function ($model) {
             $model['uuid']      = Str::uuid();
-            $model['password']  = bcrypt($model->password);
             return $model;
         });
     }

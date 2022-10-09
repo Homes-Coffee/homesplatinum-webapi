@@ -21,6 +21,10 @@ class CustomerWallet extends Model
         'customer_uuid',
     ];
 
+    protected $hidden = [
+        'pin',
+    ];
+
     public static function boot()
     {
         parent::boot();

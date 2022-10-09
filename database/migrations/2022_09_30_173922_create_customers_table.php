@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unque();
             $table->string('whatsapp', 20)->unque();
-            $table->string('password');
             $table->string('photo')->nullable();
             $table->string('fcm')->nullable();
             $table->boolean('is_active')->default(false);
