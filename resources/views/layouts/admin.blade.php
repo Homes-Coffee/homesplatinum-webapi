@@ -21,7 +21,7 @@
     <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
     <link rel="icon" type="image/png" href="{{ asset('assets/img/favicon.png') }}">
     <title>
-        {{ isset($title) ? $title . ' - ' : '' }}  HOMES COFFEE PLATINUM
+        {{ isset($title) ? Str::upper($title) . ' - ' : '' }}  HOMES COFFEE PLATINUM
     </title>
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -52,18 +52,120 @@
             </a>
         </div>
         <hr class="horizontal dark mt-0">
-        <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
+        <div class="collapse navbar-collapse w-auto" id="sidenav-collapse-main" style="height: 100%;">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active" href="../pages/dashboard.html">
+                    <a class="nav-link active" href="{{ route('dashboard') }}">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+                            <i class="ni ni-tv-2 text-primary text-lg opacity-10"></i>
                         </div>
                         <span class="nav-link-text ms-1">Dashboard</span>
                     </a>
                 </li>
+                <li class="nav-item mt-3">
+                    <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Main Menu</h6>
+                </li>
                 <li class="nav-item">
+                    <a class="nav-link " href="#">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-basket text-primary text-lg opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Get Point</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="#">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-money-coins text-primary text-lg opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Redeem Reward</span>
+                    </a>
+                </li>
+                <li class="nav-item mt-3">
+                    <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Customer Information</h6>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="#">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-user-run text-primary text-lg opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">{{ Str::title('waiting verification') }}</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="#">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-satisfied text-primary text-lg opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">{{ Str::title('Customers') }}</span>
+                    </a>
+                </li>
+                <li class="nav-item mt-3">
+                    <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Master Card Membership</h6>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="#">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-badge text-primary text-lg opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">{{ Str::title('Membership Card') }}</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="#">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-trophy text-primary text-lg opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">{{ Str::title('Priority Benefit') }}</span>
+                    </a>
+                </li>
+                <li class="nav-item mt-3">
+                    <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Content And Promo</h6>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="#">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-notification-70 text-primary text-lg opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">BroadCast Rewards</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="#">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-tag text-primary text-lg opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Promo</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="#">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-book-bookmark text-primary text-lg opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Hidden Menu</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="#">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-tablet-button text-primary text-lg opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Home Facts</span>
+                    </a>
+                </li>
+                {{-- <li class="nav-item">
                     <a class="nav-link " href="../pages/tables.html">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
@@ -128,25 +230,8 @@
                         </div>
                         <span class="nav-link-text ms-1">Sign Up</span>
                     </a>
-                </li>
+                </li> --}}
             </ul>
-        </div>
-        <div class="sidenav-footer mx-3 ">
-            <div class="card card-plain shadow-none" id="sidenavCard">
-                <img class="w-50 mx-auto" src="../assets/img/illustrations/icon-documentation.svg"
-                    alt="sidebar_illustration">
-                <div class="card-body text-center p-3 w-100 pt-0">
-                    <div class="docs-info">
-                        <h6 class="mb-0">Need help?</h6>
-                        <p class="text-xs font-weight-bold mb-0">Please check our docs</p>
-                    </div>
-                </div>
-            </div>
-            <a href="https://www.creative-tim.com/learning-lab/bootstrap/license/argon-dashboard" target="_blank"
-                class="btn btn-dark btn-sm w-100 mb-3">Documentation</a>
-            <a class="btn btn-primary btn-sm mb-0 w-100"
-                href="https://www.creative-tim.com/product/argon-dashboard-pro?ref=sidebarfree" type="button">Upgrade to
-                pro</a>
         </div>
     </aside>
 

@@ -5,6 +5,7 @@ use App\Http\Controllers\CardController;
 use App\Http\Controllers\RewardController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\CustomerVerificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,10 +22,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
-
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
 
@@ -32,6 +29,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('rewards', RewardController::class)->names('rewards');
 
     Route::resource('customers', CustomerController::class);
+
+    Route::get('waiting-verification', [CustomerVerificationController::class, 'index'])->name('waiting_verificatiton.index');
 });
 
 
