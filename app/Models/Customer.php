@@ -32,7 +32,7 @@ class Customer extends Model
         'is_active' => 'boolean'
     ];
 
-    protected $append = ['image_link'];
+    protected $appends = ['image_link'];
 
     public function getImageLinkAttribute()
     {

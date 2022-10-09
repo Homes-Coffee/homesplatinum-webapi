@@ -7,5 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class CustomerTransaction extends Model
 {
-    use HasFactory;
+    protected $table = 'customer_transactions';
+
+    protected $fillable = [
+        'uuid',
+        'name',
+        'description',
+        'total',
+        'customer_uuid',
+        'user_id',
+    ];
 }

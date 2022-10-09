@@ -10,7 +10,9 @@ use App\Http\Controllers\API\V1\WalletController;
 use App\Http\Controllers\API\V1\CustomerController;
 use App\Http\Controllers\API\V1\RegisterController;
 use App\Http\Controllers\API\V1\AgreementController;
+use App\Http\Controllers\API\V1\HomesFactController;
 use App\Http\Controllers\API\V1\MembershipCardController;
+use App\Http\Controllers\API\V1\CustomerTransactionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +34,7 @@ Route::post('check-otp', [OTPController::class, 'check_otp']);
 Route::post('resend-otp', [OTPController::class, 'resend_otp']);
 
 Route::get('card', [CardController::class, 'index']);
+Route::get('homes-fact', [HomesFactController::class, 'index']);
 
 Route::middleware(['auth:sanctum', 'is_active'])->group(function () {
 
@@ -47,11 +50,15 @@ Route::middleware(['auth:sanctum', 'is_active'])->group(function () {
         Route::prefix('customer')->group(function () {
             Route::get('/', [CustomerController::class, 'show']);
 
+            Route::put('update-fcm', [CustomerController::class, 'fcm']);
             Route::put('change-image', [CustomerController::class, 'change_image']);
             Route::put('change-profile', [CustomerController::class, 'change_profile']);
 
             Route::delete('logout', [CustomerController::class, 'logout']);
             Route::delete('delete-account', [CustomerController::class, 'delete_account']);
+
+            Route::get('/transactions', [CustomerTransactionController::class, 'history_transaction']);
+
         });
     });
 

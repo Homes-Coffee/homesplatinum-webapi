@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Responses\JsonResponser;
 use App\Http\Resources\CustomerResource;
 use App\Http\Requests\API\ChangeImageRequest;
+use App\Http\Requests\API\CustomerFCMRequest;
 use App\Http\Requests\API\ChangeProfileRequest;
 use App\Http\Requests\API\ChangePasswordRequest;
 
@@ -33,6 +34,20 @@ class CustomerController extends Controller
         }
     }
 
+    public function fcm(CustomerFCMRequest $request)
+    {
+        try {
+            $customer = Customer::findOrFail(auth()->user()->uuid);
+            $customer->fcm = $request->fcm;
+            $customer->save();
+
+            return (new JsonResponser())->success('FCM Success', $customer);
+
+        } catch (\Throwable $th) {
+            return (new JsonResponser())->exception($th);
+        }
+    }
+
     public function change_image(ChangeImageRequest $request)
     {
         try {
@@ -53,7 +68,7 @@ class CustomerController extends Controller
     public function change_password(ChangePasswordRequest $request)
     {
         try {
-            $customer = Customer::findOrFail(auth()->user()->id);
+            $customer = Customer::findOrFail(auth()->user()->uuid);
             $customer->password = bcrypt($request->password);
             $customer->save();
 
