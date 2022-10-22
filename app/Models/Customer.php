@@ -2,9 +2,12 @@
 
 namespace App\Models;
 
+use App\Models\Card;
 use Illuminate\Support\Str;
 use App\Models\CustomerReward;
 use App\Models\CustomerWallet;
+use App\Models\CustomerLoyalty;
+use App\Models\CustomerStudent;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -54,6 +57,16 @@ class Customer extends Model
     }
 
     /**
+     * Get the card that owns the Customer
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function card()
+    {
+        return $this->belongsTo(Card::class, 'card_uuid');
+    }
+
+    /**
      * Get the wallet associated with the Customer
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
@@ -72,4 +85,31 @@ class Customer extends Model
     {
         return $this->hasMany(CustomerReward::class, 'customer_uuid');
     }
+
+    /**
+     * Get all of the customerLoyalty for the Customer
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function hasCustomerLoyalty()
+    {
+        return $this->hasMany(CustomerLoyalty::class, 'customer_uuid', 'uuid');
+    }
+
+    /**
+     * Get all of the customerStudent for the Customer
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function hasCustomerStudent()
+    {
+        return $this->hasMany(CustomerStudent::class, 'customer_uuid', 'uuid');
+    }
+
+    public function customerNeedVerification()
+    {
+        return Customer::where('is_active', 0)->with('hasCustomerStudent')->with('hasCustomerLoyalty');
+    }
+
+
 }

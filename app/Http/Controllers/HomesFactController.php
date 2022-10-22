@@ -3,20 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\DataTables\CustomerDataTable;
 
-class CustomerController extends Controller
+class HomesFactController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(CustomerDataTable $datatable)
+    public function index()
     {
-        return $datatable->render('customers.index', [
-            'title' => 'Customers'
-        ]);
+        //
     }
 
     /**

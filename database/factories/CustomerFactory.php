@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Card;
 use App\Models\Customer;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
@@ -26,8 +27,8 @@ class CustomerFactory extends Factory
             'name'      => $this->faker->name(),
             'email'     => $this->faker->unique()->safeEmail,
             'whatsapp'  => $this->faker->unique()->numerify('08##########'),
-            'password'      => Hash::make('password'),
-            'photo'         => null,
+            'photo'     => null,
+            'card_uuid' => Card::all()->first()->uuid,
         ];
     }
 }

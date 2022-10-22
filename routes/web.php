@@ -5,6 +5,7 @@ use App\Http\Controllers\CardController;
 use App\Http\Controllers\RewardController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HomesFactController;
 use App\Http\Controllers\CustomerVerificationController;
 
 /*
@@ -28,7 +29,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('cards', CardController::class)->names('cards');
     Route::resource('rewards', RewardController::class)->names('rewards');
 
-    Route::resource('customers', CustomerController::class);
+    Route::resource('homes-fact', HomesFactController::class)->names('homesfact');
+
+    Route::resource('customers', CustomerController::class)->names('customers');
 
     Route::get('waiting-verification', [CustomerVerificationController::class, 'index'])->name('waiting_verificatiton.index');
 });

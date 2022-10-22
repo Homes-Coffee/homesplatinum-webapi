@@ -20,8 +20,11 @@ class HomeController extends Controller
 
             return (new JsonResponser())->success('Home', [
                 'customer' => $customer,
+                'card' => $customer->card()->first(),
                 'promo' => $promo,
                 'homes_fact' => false,
+                'new_rewards' => false,
+                'new_promo' => false
             ]);
 
         } catch (\Throwable $th) {

@@ -33,6 +33,7 @@
     <link href="{{ asset('assets/css/nucleo-svg.css') }}" rel="stylesheet" />
     <!-- CSS Files -->
     <link id="pagestyle" href="{{ asset('assets/css/argon-dashboard.css?v=2.0.4') }}" rel="stylesheet" />
+    <link id="pagestyle" href="{{ asset('assets/css/datatables.css') }}" rel="stylesheet" />
 
     @stack('css')
 </head>
@@ -88,7 +89,7 @@
                     <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Customer Information</h6>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="#">
+                    <a class="nav-link " href="{{ route('waiting_verificatiton.index') }}">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-user-run text-primary text-lg opacity-10"></i>
@@ -97,7 +98,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="#">
+                    <a class="nav-link " href="{{ route('customers.index') }}">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-satisfied text-primary text-lg opacity-10"></i>
@@ -157,7 +158,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="#">
+                    <a class="nav-link " href="{{ route('homesfact.index') }}">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-tablet-button text-primary text-lg opacity-10"></i>
@@ -499,95 +500,14 @@
         </div>
     </div>
     <!--   Core JS Files   -->
+    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+    <script src="//cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
     <script src="{{ asset('assets/js/core/popper.min.js') }}"></script>
     <script src="{{ asset('assets/js/core/bootstrap.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/perfect-scrollbar.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/smooth-scrollbar.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/chartjs.min.js') }}"></script>
-    <script>
-        var ctx1 = document.getElementById("chart-line").getContext("2d");
 
-        var gradientStroke1 = ctx1.createLinearGradient(0, 230, 0, 50);
-
-        gradientStroke1.addColorStop(1, 'rgba(94, 114, 228, 0.2)');
-        gradientStroke1.addColorStop(0.2, 'rgba(94, 114, 228, 0.0)');
-        gradientStroke1.addColorStop(0, 'rgba(94, 114, 228, 0)');
-        new Chart(ctx1, {
-            type: "line",
-            data: {
-                labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-                datasets: [{
-                    label: "Mobile apps",
-                    tension: 0.4,
-                    borderWidth: 0,
-                    pointRadius: 0,
-                    borderColor: "#5e72e4",
-                    backgroundColor: gradientStroke1,
-                    borderWidth: 3,
-                    fill: true,
-                    data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
-                    maxBarThickness: 6
-
-                }],
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        display: false,
-                    }
-                },
-                interaction: {
-                    intersect: false,
-                    mode: 'index',
-                },
-                scales: {
-                    y: {
-                        grid: {
-                            drawBorder: false,
-                            display: true,
-                            drawOnChartArea: true,
-                            drawTicks: false,
-                            borderDash: [5, 5]
-                        },
-                        ticks: {
-                            display: true,
-                            padding: 10,
-                            color: '#fbfbfb',
-                            font: {
-                                size: 11,
-                                family: "Open Sans",
-                                style: 'normal',
-                                lineHeight: 2
-                            },
-                        }
-                    },
-                    x: {
-                        grid: {
-                            drawBorder: false,
-                            display: false,
-                            drawOnChartArea: false,
-                            drawTicks: false,
-                            borderDash: [5, 5]
-                        },
-                        ticks: {
-                            display: true,
-                            color: '#ccc',
-                            padding: 20,
-                            font: {
-                                size: 11,
-                                family: "Open Sans",
-                                style: 'normal',
-                                lineHeight: 2
-                            },
-                        }
-                    },
-                },
-            },
-        });
-
-    </script>
     <script>
         var win = navigator.platform.indexOf('Win') > -1;
         if (win && document.querySelector('#sidenav-scrollbar')) {
@@ -602,6 +522,7 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="{{ asset('assets/js/argon-dashboard.min.js?v=2.0.4') }}"></script>
+
     @stack('js')
 
 </body>
