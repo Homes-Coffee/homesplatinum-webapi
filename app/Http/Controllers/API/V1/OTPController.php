@@ -39,6 +39,7 @@ class OTPController extends Controller
 
             $user = Customer::where('uuid', $request->customer_uuid)->firstOrFail();
             $user->phone_verified_at = Carbon::now()->format('Y-m-d h:i:s');
+            $user->is_active = true;
             $user->save();
 
             $token  = $user->createToken(md5('homes'))->plainTextToken;
