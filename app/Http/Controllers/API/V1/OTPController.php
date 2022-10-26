@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use App\Models\OTP;
 use App\Models\Customer;
 use Illuminate\Http\Request;
+use App\Libraries\StarSender;
 use App\Http\Resources\OTPResource;
 use App\Http\Controllers\Controller;
 use App\Http\Responses\JsonResponser;
@@ -64,12 +65,8 @@ class OTPController extends Controller
                 'user_id'       => $request->customer_uuid,
             ]);
 
-            // WaBlast::sendWA([
-            //     'phone'     => $data->nohp,
-            //     'message'   => 'Berikut Kode OTP anda ' . $code . ' Harap rahasiakan kode OTP anda!',
-            //     'secret'    => false, // or true
-            //     'priority'  => false
-            // ]);
+            $customer = Customer::findOrFail($request->customer_uuid);
+            $wa = StarSender::sendWA($customer->whatsapp, 'Berikut Kode OTP anda ' . $code . ' Harap rahasiakan kode OTP anda!');
 
             return (new JsonResponser())->success('success', (object) ['message' => 'OTP has been sent'], 200);
         } catch (\Throwable $th) {
