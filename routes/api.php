@@ -11,7 +11,6 @@ use App\Http\Controllers\API\V1\CustomerController;
 use App\Http\Controllers\API\V1\RegisterController;
 use App\Http\Controllers\API\V1\AgreementController;
 use App\Http\Controllers\API\V1\HomesFactController;
-// use App\Http\Controllers\API\V1\MembershipCardController;
 use App\Http\Controllers\API\V1\CustomerTransactionController;
 
 /*
@@ -42,6 +41,7 @@ Route::middleware(['auth:sanctum', 'is_active'])->group(function () {
 
     Route::middleware(['pin_required'])->group(function () {
         Route::put('change-pin', [WalletController::class, 'change_pin']);
+        Route::post('check-pin', [WalletController::class, 'check_pin']);
     });
 
     Route::middleware(['pin_not_null'])->group(function () {

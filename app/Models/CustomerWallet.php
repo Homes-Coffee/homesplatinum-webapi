@@ -30,8 +30,7 @@ class CustomerWallet extends Model
         parent::boot();
 
         self::creating(function ($model) {
-            $model['uuid']           = Str::uuid();
-            $model['customer_code']  = Str::upper(uniqid());
+            $model['uuid'] = Str::uuid();
             return $model;
         });
     }

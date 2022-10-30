@@ -17,9 +17,9 @@ class IsActive
      */
     public function handle(Request $request, Closure $next)
     {
-        $isActive = auth()->user()->is_active;
+        $isActive = auth()->user();
 
-        if (! $isActive ) {
+        if (! $isActive->is_active ) {
             return (new JsonResponser())->failure('User Belum Diverifikasi', (object) ['message' => 'user not verified'], 404);
         }
 
