@@ -11,6 +11,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Responses\JsonResponser;
 use App\Http\Requests\API\LoginRequest;
 use App\Http\Resources\CustomerResource;
+use \Illuminate\Database\Eloquent\ModelNotFoundException;
+
 
 class LoginController extends Controller
 {
@@ -34,6 +36,8 @@ class LoginController extends Controller
             $wa = StarSender::sendWA($customer->whatsapp, 'Berikut Kode OTP anda ' . $code . ' Harap rahasiakan kode OTP anda!');
 
             return (new JsonResponser())->success('Whatsapp ditemukan, masukan OTP', ['customer' => new CustomerResource($customer)]);
+        } catch (ModelNotFoundException $e) {
+            return (new JsonResponser())->failure('Not Found', ['message' => 'Not Found'], 404);
         } catch (\Throwable $th) {
             return (new JsonResponser())->exception($th);
         }
