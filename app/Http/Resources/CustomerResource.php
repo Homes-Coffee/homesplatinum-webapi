@@ -27,7 +27,8 @@ class CustomerResource extends JsonResource
             'email' => $this->customer->email,
             'photo' => $this->customer->image_link,
             'is_active'         => $this->customer->is_active,
-            'phone_verified_at' => $this->customer->phone_verified_at
+            'phone_verified_at' => $this->customer->phone_verified_at,
+            'wallets' => $this->customer->wallet()->first()
         ];
     }
 }
