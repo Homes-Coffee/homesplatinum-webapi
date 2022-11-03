@@ -35,7 +35,7 @@ class LoginController extends Controller
 
             $wa = StarSender::sendWA($customer->whatsapp, 'Berikut Kode OTP anda ' . $code . ' Harap rahasiakan kode OTP anda!');
 
-            return (new JsonResponser())->success('Whatsapp ditemukan, masukan OTP', ['customer' => new CustomerResource($customer)]);
+            return (new JsonResponser())->success('Whatsapp ditemukan, masukan OTP', ['customer' => new CustomerResource($customer), 'otp' => $otp]);
         } catch (ModelNotFoundException $e) {
             return (new JsonResponser())->failure('Not Found', ['message' => 'Not Found'], 404);
         } catch (\Throwable $th) {

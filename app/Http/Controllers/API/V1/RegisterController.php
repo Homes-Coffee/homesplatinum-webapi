@@ -77,7 +77,7 @@ class RegisterController extends Controller
 
             $wa = StarSender::sendWA($customer->whatsapp, 'Berikut Kode OTP anda ' . $code . ' Harap rahasiakan kode OTP anda!');
 
-            return (new JsonResponser())->success('Registrasi berhasil, masukan OTP', new CustomerResource($customer->fresh()), 200);
+            return (new JsonResponser())->success('Registrasi berhasil, masukan OTP', new CustomerResource($customer->fresh(), $otp), 200);
         } catch (\Throwable $th) {
             return (new JsonResponser())->exception($th, 500);
         }

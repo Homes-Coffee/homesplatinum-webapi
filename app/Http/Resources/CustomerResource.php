@@ -7,10 +7,12 @@ use Illuminate\Http\Resources\Json\JsonResource;
 class CustomerResource extends JsonResource
 {
     public $customer;
+    public $otp;
 
-    public function __construct($customer)
+    public function __construct($customer, $otp = null)
     {
         $this->customer = $customer;
+        $this->otp      = $otp;
     }
 
     /**
@@ -28,7 +30,8 @@ class CustomerResource extends JsonResource
             'photo' => $this->customer->image_link,
             'is_active'         => $this->customer->is_active,
             'phone_verified_at' => $this->customer->phone_verified_at,
-            'wallets' => $this->customer->wallet()->first()
+            'wallets'           => $this->customer->wallet()->first(),
+            'otp'               => $this->otp
         ];
     }
 }

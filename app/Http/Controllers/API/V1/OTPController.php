@@ -68,7 +68,7 @@ class OTPController extends Controller
             $customer = Customer::findOrFail($request->customer_uuid);
             $wa = StarSender::sendWA($customer->whatsapp, 'Berikut Kode OTP anda ' . $code . ' Harap rahasiakan kode OTP anda!');
 
-            return (new JsonResponser())->success('success', (object) ['message' => 'OTP has been sent'], 200);
+            return (new JsonResponser())->success('success', (object) ['message' => 'OTP has been sent', 'otp' => $otp], 200);
         } catch (\Throwable $th) {
             return (new JsonResponser())->exception($th);
         }
