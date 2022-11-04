@@ -31,6 +31,7 @@ class CustomerResource extends JsonResource
             'is_active'         => $this->customer->is_active,
             'phone_verified_at' => $this->customer->phone_verified_at,
             'wallets'           => $this->customer->wallet()->first(),
+            'membership_card'   => $this->customer->card()->first(),
             'otp'               => $this->otp
         ];
     }
