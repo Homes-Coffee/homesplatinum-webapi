@@ -73,4 +73,15 @@ class OTPController extends Controller
             return (new JsonResponser())->exception($th);
         }
     }
+
+    public function getOTP($phoneNumber)
+    {
+        $userId = Customer::where('whatsapp', $phoneNumber)->first()->uuid;
+
+        $otp = OTP::where('user_id', $userId)
+                ->where('time_exp', Carbon::now()->timestamp, '<')
+                ->where('has_been_used', 0)->get();
+
+        return $otp;
+    }
 }

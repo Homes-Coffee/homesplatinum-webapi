@@ -28,10 +28,15 @@ class CustomerVerificationDataTable extends DataTable
             ->addIndexColumn()
             ->rawColumns(['action'])
             ->addColumn('action', function ($datatable) {
-                return '<a href="javascript:;" class="text-secondary font-weight-bold text-xs"
-                data-toggle="tooltip" data-original-title="Edit user">
-                    Membership Accepted
-                </a>';
+
+                $accept = "<a href='".route('waiting_verificatiton.update', ['id' => $datatable->uuid, 'is_accept' => 1])."' class='p-1 m-1 text-success'><span class='fas fa-check'></span></a>";
+                $reject = "<a href='".route('waiting_verificatiton.update', ['id' => $datatable->uuid, 'is_accept' => -1])."' class='p-1 m-1 text-danger'><span class='fas fa-times'></span></a>";
+
+                return $accept . ' ' . $reject;
+                // return '<a href="javascript:;" class="text-secondary font-weight-bold text-xs"
+                // data-toggle="tooltip" data-original-title="Edit user">
+                //     Membership Accepted
+                // </a>';
             })
             ->addColumn('customer_name', function ($datatable) {
                 if (! empty($datatable->hasCustomerLoyalty()->first()) ) {
@@ -106,6 +111,7 @@ class CustomerVerificationDataTable extends DataTable
         return [
             Column::make('DT_RowIndex')
                 ->title('No')
+                ->searchable(false)
                 ->addClass('text-uppercase text-secondary text-xxs opacity-7 text-center'),
             Column::make('customer_name')
                 ->addClass('text-uppercase text-secondary text-xxs opacity-7 text-left'),

@@ -14,4 +14,14 @@ class CustomerVerificationController extends Controller
             'title' => 'Customer Verification'
         ]);
     }
+
+    public function update($id, $is_active) {
+        // validate user
+
+        $customer = Customer::findOrFail($id);
+        $customer->is_active = $is_active;
+        $customer->save();
+
+        return redirect()->back()->with('success', 'User has been verification');
+    }
 }

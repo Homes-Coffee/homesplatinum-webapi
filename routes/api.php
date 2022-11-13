@@ -23,7 +23,7 @@ use App\Http\Controllers\API\V1\CustomerTransactionController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-// Route::get('membership-card', [MembershipCardController::class, 'index']);
+
 Route::get('agreement/{agreement}', [AgreementController::class, 'show']);
 
 Route::post('register/{type?}', [RegisterController::class, 'register']);

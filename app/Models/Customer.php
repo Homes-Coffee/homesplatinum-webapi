@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\OTP;
 use App\Models\Card;
 use Illuminate\Support\Str;
 use App\Models\CustomerReward;
@@ -84,6 +85,16 @@ class Customer extends Model
     public function rewards()
     {
         return $this->hasMany(CustomerReward::class, 'customer_uuid');
+    }
+
+    /**
+     * Get all of the otp for the Customer
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function otp()
+    {
+        return $this->hasMany(OTP::class, 'user_id');
     }
 
     /**
