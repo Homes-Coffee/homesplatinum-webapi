@@ -6,6 +6,7 @@ use App\Http\Controllers\API\V1\OTPController;
 use App\Http\Controllers\API\V1\CardController;
 use App\Http\Controllers\API\V1\HomeController;
 use App\Http\Controllers\API\V1\LoginController;
+use App\Http\Controllers\API\V1\StoreController;
 use App\Http\Controllers\API\V1\WalletController;
 use App\Http\Controllers\API\V1\CustomerController;
 use App\Http\Controllers\API\V1\RegisterController;
@@ -25,6 +26,8 @@ use App\Http\Controllers\API\V1\CustomerTransactionController;
 */
 
 Route::get('agreement/{agreement}', [AgreementController::class, 'show']);
+Route::get('stores', [StoreController::class, 'index']);
+Route::get('stores/{store}', [StoreController::class, 'show']);
 
 Route::post('register/{type?}', [RegisterController::class, 'register']);
 Route::post('login', [LoginController::class, 'login']);

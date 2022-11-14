@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CardController;
+use App\Http\Controllers\StoreController;
 use App\Http\Controllers\RewardController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\GetPointController;
@@ -46,6 +47,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('get-rewards', [GetRewardController::class, 'create'])->name('get_reward.create');
     Route::post('get-rewards/store', [GetRewardController::class, 'store'])->name('get_reward.store');
+
+    Route::resource('store-management', StoreController::class)->names('store');
 });
 
 
