@@ -100,7 +100,7 @@ class WalletController extends Controller
      * CREATE PIN BODY ONLY PIN
      * BUT CHANGE PIN BODY PIN AND OLD_PIN IN NUMERIC
      */
-    public function vallidate_pin(ValidatePinRequest $request)
+    public function validate_pin(ValidatePinRequest $request)
     {
         try {
             $customer = auth()->user();
