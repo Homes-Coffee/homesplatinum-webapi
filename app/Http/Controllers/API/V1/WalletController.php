@@ -89,9 +89,9 @@ class WalletController extends Controller
             $wallet   = $customer->wallet()->first();
 
             if (Hash::check($request->pin, $wallet->pin)) {
-                return (new JsonResponser())->success('Pin Sukses', ['customer' => new CustomerResource($customer), 'wallet' => $wallet]);
+                return (new JsonResponser())->success('Pin Match', ['customer' => new CustomerResource($customer), 'wallet' => $wallet]);
             } else {
-                return (new JsonResponser())->failure('Pin Sukses', null, 401);
+                return (new JsonResponser())->failure('Pin Fail', null, 403);
             }
 
         } catch (\Throwable $th) {
