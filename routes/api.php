@@ -41,7 +41,7 @@ Route::get('homes-fact', [HomesFactController::class, 'index']);
 Route::middleware(['auth:sanctum', 'is_active'])->group(function () {
 
     Route::get('check-pin', [WalletController::class, 'check_pin']);
-    Route::post('valdate-pin', [WalletController::class, 'validate_pin']);
+    Route::post('validate-pin', [WalletController::class, 'validate_pin']);
     Route::post('create-pin', [WalletController::class, 'create_pin']);
 
     Route::middleware(['pin_not_null'])->group(function () {
